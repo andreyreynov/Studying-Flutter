@@ -7,7 +7,12 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(home: NavigationBar());
+    return MaterialApp(
+      home: NavigationBar(),
+      theme: ThemeData(
+        colorSchemeSeed: Color.fromARGB(255, 255, 0, 0),
+      ),
+    );
   }
 }
 
@@ -39,10 +44,7 @@ class _NavigationBarState extends State<NavigationBar> {
       'Страница "Субнаряды"',
       style: optionStyle,
     ),
-    Text(
-      'Страница "Пользователи"',
-      style: optionStyle,
-    )
+    _LoginPage(),
   ];
 
   void _onItemTapped(int index) {
@@ -55,14 +57,21 @@ class _NavigationBarState extends State<NavigationBar> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: const Color.fromARGB(255, 167, 167, 167),
-        centerTitle: true,
-        title: const Image(
-          image: AssetImage('assests/images/AppLogo.png'),
-          fit: BoxFit.contain,
-          height: 40,
-        ),
-      ),
+          centerTitle: true,
+          title: const Image(
+            image: AssetImage('assests/images/AppLogo.png'),
+            fit: BoxFit.contain,
+            height: 40,
+          ),
+          flexibleSpace: Container(
+              decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                      begin: Alignment.centerLeft,
+                      end: Alignment.centerRight,
+                      colors: <Color>[
+                Colors.red.shade500,
+                Colors.red.shade100
+              ])))),
       body: Center(
         child: _widgetOptions.elementAt(_selectedIndex),
       ),
@@ -95,5 +104,67 @@ class _NavigationBarState extends State<NavigationBar> {
         onTap: _onItemTapped,
       ),
     );
+  }
+}
+
+class _LoginPage extends StatelessWidget {
+  const _LoginPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+                  child: TextButton(
+                    onPressed: () {},
+                    child: Text('Вход'),
+                    style: TextButton.styleFrom(foregroundColor: Colors.red),
+                  )),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+                child: TextButton(
+                  onPressed: () {},
+                  child: Text('Регистрация'),
+                  style: TextButton.styleFrom(foregroundColor: Colors.red),
+                ),
+              )
+            ],
+          ),
+          const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 8, vertical: 10),
+              child: SizedBox(
+                  width: 400,
+                  child: TextField(
+                    decoration: InputDecoration(
+                        border: OutlineInputBorder(), hintText: 'Логин'),
+                  ))),
+          const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 8, vertical: 10),
+            child: SizedBox(
+                width: 400,
+                child: TextField(
+                  decoration: InputDecoration(
+                      border: OutlineInputBorder(), hintText: 'Пароль'),
+                )),
+          ),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 8, vertical: 10),
+            child: SizedBox(
+              width: 400,
+              height: 50,
+              child: FilledButton(
+                onPressed: () {},
+                child: Text('Войти'),
+                style: TextButton.styleFrom(
+                    foregroundColor: Color.fromARGB(255, 255, 185, 180)),
+              ),
+            ),
+          )
+        ]);
   }
 }
