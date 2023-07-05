@@ -94,3 +94,5 @@ flutter:
         - asset: fonts/OpenSans-Regular.ttf
         - asset: fonts/OpenSans-Bold.ttf
           weight: 700
+  assets: 
+  - assests\images\AppLogo.png
