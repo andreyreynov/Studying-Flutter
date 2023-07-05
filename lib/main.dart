@@ -7,32 +7,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-        color: Colors.lightBlue[100],
-/*         home: Scaffold(
-            appBar: AppBar(
-                toolbarHeight: 60,
-                backgroundColor: Colors.lightBlue[100],
-                title: const Text('BOM calculator'),
-                centerTitle: true,
-                titleTextStyle: const TextStyle(
-                    color: Colors.black,
-                    fontFamily: 'OpenSans',
-                    fontWeight: FontWeight.bold,
-                    fontSize: 22.0),
-                flexibleSpace: Container(
-                  decoration: const BoxDecoration(
-                    gradient: LinearGradient(
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomRight,
-                      colors: [
-                        Colors.deepOrangeAccent,
-                        Colors.orange,
-                      ],
-                    ),
-                  ),
-                ))) */
-        home: const NavigationBar());
+    return const MaterialApp(color: Colors.red, home: NavigationBar());
   }
 }
 
@@ -46,20 +21,28 @@ class NavigationBar extends StatefulWidget {
 class _NavigationBarState extends State<NavigationBar> {
   int _selectedIndex = 0;
   static const TextStyle optionStyle =
-      TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
+      TextStyle(fontSize: 25, fontWeight: FontWeight.bold, color: Colors.black);
   static const List<Widget> _widgetOptions = <Widget>[
     Text(
-      'Index 0: Home',
+      'Страница "Объекты"',
       style: optionStyle,
     ),
     Text(
-      'Index 1: Business',
+      'Страница "Наряды"',
       style: optionStyle,
     ),
     Text(
-      'Index 2: School',
+      'Страница "Добавить"',
       style: optionStyle,
     ),
+    Text(
+      'Страница "Субнаряды"',
+      style: optionStyle,
+    ),
+    Text(
+      'Страница "Пользователи"',
+      style: optionStyle,
+    )
   ];
 
   void _onItemTapped(int index) {
@@ -72,28 +55,43 @@ class _NavigationBarState extends State<NavigationBar> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('BottomNavigationBar Sample'),
+        backgroundColor: const Color.fromARGB(255, 167, 167, 167),
+        centerTitle: true,
+        title: const Image(
+          image: AssetImage('assests/images/AppLogo.png'),
+          fit: BoxFit.contain,
+          height: 40,
+        ),
       ),
       body: Center(
         child: _widgetOptions.elementAt(_selectedIndex),
       ),
       bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
-            label: 'Home',
+            label: 'Объекты',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.business),
-            label: 'Business',
+            label: 'Наряды',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.school),
-            label: 'School',
+            icon: Icon(Icons.add),
+            label: 'Добавить',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.business),
+            label: 'Субнаряды',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person),
+            label: 'Пользователи',
           ),
         ],
         currentIndex: _selectedIndex,
-        selectedItemColor: Colors.amber[800],
+        selectedItemColor: Colors.red,
         onTap: _onItemTapped,
       ),
     );
