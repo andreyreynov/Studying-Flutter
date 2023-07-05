@@ -7,7 +7,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(color: Colors.red, home: NavigationBar());
+    return const MaterialApp(home: NavigationBar());
   }
 }
 
@@ -21,7 +21,7 @@ class NavigationBar extends StatefulWidget {
 class _NavigationBarState extends State<NavigationBar> {
   int _selectedIndex = 0;
   static const TextStyle optionStyle =
-      TextStyle(fontSize: 25, fontWeight: FontWeight.bold, color: Colors.black);
+      TextStyle(fontSize: 25, fontWeight: FontWeight.bold);
   static const List<Widget> _widgetOptions = <Widget>[
     Text(
       'Страница "Объекты"',
